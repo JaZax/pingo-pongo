@@ -4,17 +4,39 @@ canvas.width = window.innerWidth;
 
 const c = canvas.getContext('2d')
 
-c.fillRect(100, window.innerHeight/3, 60, window.innerHeight/3)
-c.fillRect(window.innerWidth - 150, window.innerHeight/3, 60, window.innerHeight/3)
 
 window.addEventListener('keydown' , (e)=>{
     switch(e.key)
     {
         case 'w' : 
-        console.log('left up')
-        break;
+            lefty-=25
+            break;
 
         case 's' : 
-        console.log('left down');
+            lefty+=25
+            break;
+
+        case 'i' : 
+            righty-=25
+            break;
+
+        case 'k' : 
+            righty+=25
+            break;
     }
 })
+
+let lefty = window.innerHeight/3;
+let righty = window.innerHeight/3;
+
+function action (){
+    requestAnimationFrame(action);
+
+    c.clearRect(0, 0, window.innerWidth, window.innerHeight)
+
+    c.fillStyle = 'rgb(56, 56, 56)'
+    c.fillRect(100, lefty, 60, window.innerHeight/3)
+    c.fillRect(window.innerWidth - 150, righty, 60, window.innerHeight/3)
+}
+
+action()
